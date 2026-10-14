@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Physics Arena</title>
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #07070a; }
+      canvas { display: block; touch-action: none; cursor: crosshair; image-rendering: pixelated; }
+      #hud {
+        position: fixed; top: 12px; left: 12px; color: #9aa4b2;
+        font: 14px system-ui, sans-serif; pointer-events: none; line-height: 1.5;
+      }
+      #title {
+        position: fixed; inset: 0; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 12px;
+        background: rgba(7, 7, 10, 0.55); color: #d8dce4;
+        font: 16px system-ui, sans-serif; pointer-events: none;
+      }
+      #title h1 { margin: 0; font-size: 44px; letter-spacing: 0.2em; text-transform: uppercase; }
+      #title .go { font-size: 20px; animation: pulse 1.4s ease-in-out infinite; }
+      #title .dev { color: #7b8494; font-size: 13px; }
+      @keyframes pulse { 50% { opacity: 0.35; } }
+      #devpanel {
+        position: fixed; top: 12px; right: 12px; width: 290px; display: none;
+        background: rgba(12, 12, 18, 0.92); color: #d8dce4; border: 1px solid #2a2d38;
+        border-radius: 6px; padding: 12px 14px; font: 13px system-ui, sans-serif;
+      }
+      #devpanel h2 { margin: 0 0 2px; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; }
+      #devpanel .note { margin: 0 0 10px; color: #7b8494; font-size: 12px; }
+      #devpanel .row { display: grid; grid-template-columns: 1fr 26px 52px 26px; gap: 4px; align-items: center; margin: 3px 0; }
+      #devpanel .value { text-align: center; font-variant-numeric: tabular-nums; color: #e6c35c; }
+      #devpanel button {
+        background: #232633; color: #d8dce4; border: 1px solid #353949; border-radius: 4px;
+        padding: 2px 0; font: inherit; cursor: pointer;
+      }
+      #devpanel button:hover { background: #2f3345; }
+      #devpanel .actions { display: flex; gap: 6px; margin-top: 12px; }
+      #devpanel .actions button { flex: 1; padding: 5px 0; }
+    </style>
+  </head>
+  <body>
+    <div id="hud">
+      <div id="status"></div>
+      <div>Your fighter follows the cursor. Flick the cursor sideways around it to swing that way.</div>
+    </div>
+    <div id="title">
+      <h1>Physics Arena</h1>
+      <div class="go">Press any key to begin</div>
+      <div class="dev">R: reset to this screen &nbsp;·&nbsp; M: mute music &nbsp;·&nbsp; P: pause and edit stats</div>
+    </div>
+    <div id="devpanel">
+      <h2>Dev: player stats</h2>
+      <p class="note">Game paused. Shift-click = 5 steps. Press P to resume.</p>
+      <div id="devrows"></div>
+      <div class="actions">
+        <button id="dev-heal">Heal</button>
+        <button id="dev-reset">Reset stats</button>
+        <button id="dev-resume">Resume</button>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
